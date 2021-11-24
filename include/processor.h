@@ -10,8 +10,8 @@ class Processor {
   // Declare any necessary private members
  private:
     long Idle,PNIdle,NIdle,Total,totald,idled;
-    long PIdle;
-    long PTotal;
+    long PIdle{0};
+    long PTotal{0};
     std::vector<std::string> cpuVals,cpuVals2;
 };
 

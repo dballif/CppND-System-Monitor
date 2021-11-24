@@ -1,5 +1,8 @@
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
+
 
 #include "processor.h"
 #include "linux_parser.h"
@@ -36,7 +39,7 @@ float Processor::Utilization() {
     totald = Total - PTotal;
     idled = Idle - PIdle;
 
-    cpu = (totald - idled)/totald;
+    cpu = 100 * ((totald - idled)/totald);
 
     //Have to reset the values to the current values for the next calculation
     PIdle = Idle;
