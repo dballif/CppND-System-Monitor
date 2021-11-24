@@ -18,19 +18,18 @@ using std::string;
 using std::vector;
 /*You need to complete the mentioned TODOs in order to satisfy the rubric criteria "The student will be able to extract and display basic data about the system."*/
 
-// TODO: Return the system's CPU
+// Return the system's CPU
 Processor& System::Cpu() { 
     return cpu_; 
     }
 
-// TODO: Return a container composed of the system's processes
-//vector<Process>& System::Processes() { return processes_; }
+// Return a container composed of the system's processes
 vector<Process>& System::Processes() {
     //Get the pids from the LinuxParser 
     vector<int> pids = LinuxParser::Pids();
 
     //Now put them into a vector<Process>
-    for(int i=0;i<pids.size();i++){
+    for(int i=0;i<(int)pids.size();i++){
         Process newProcess(pids.at(i));
         processes_.push_back(newProcess);
     }
