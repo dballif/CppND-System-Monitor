@@ -7,6 +7,8 @@
 
 #include "linux_parser.h"
 
+#define printVariableNameAndValue(x) std::cout<<"The name of variable **"<<(#x)<<"** and the value of variable is => "<<x<<"\n"
+
 using std::stof;
 using std::string;
 using std::to_string;
@@ -201,7 +203,8 @@ string LinuxParser::Ram(int pid) {
     while (std::getline(filestream, line)) {
       std::istringstream linestream(line);
       while (linestream >> key >> value) {
-        if (key == "VmSize:") {
+        //Using VmRSS instead fo VmSize becuase it will give the actual physical memory instead of virtual. Will never exceed 100%.
+        if (key == "VmRSS:") {
           memory = value;
         }
       }
@@ -234,7 +237,7 @@ string LinuxParser::User(int pid) {
   string username;
   string name,stuff,uidval;
   string pidNum = to_string(pid);
-  std::ifstream filestream(kProcDirectory + pidNum + kStatusFilename);
+  std::ifstream filestream(kPasswordPath);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
       std::replace(line.begin(), line.end(), ':', ' ');

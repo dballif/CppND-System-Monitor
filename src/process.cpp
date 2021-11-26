@@ -42,7 +42,7 @@ float Process::CpuUtilization() {
     //Actually use these values to calculate what we need to know (According to StackOverflow)
     totaltime = utime + stime; //I chose not to include children processes
     seconds = uptime - (starttime/hz);
-    cpuUse = ((totaltime/hz)/seconds) * 100;
+    cpuUse = ((totaltime/hz)/seconds);
     
     return cpuUse;
  }
@@ -57,7 +57,7 @@ string Process::Ram() { return LinuxParser::Ram(pid); }
 string Process::User() { return LinuxParser::User(pid); }
 
 // Return the age of this process (in seconds)
-long int Process::UpTime() { return LinuxParser::UpTime(pid); }
+long int Process::UpTime() { return LinuxParser::UpTime() - LinuxParser::UpTime(pid); }
 
 //  Overload the "less than" comparison operator for Process objects based on ram
 bool Process::operator<(Process a)  { 

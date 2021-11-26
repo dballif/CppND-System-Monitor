@@ -39,7 +39,7 @@ float Processor::Utilization() {
     totald = Total - PTotal;
     idled = Idle - PIdle;
 
-    cpu = 100 * (((float)totald - (float)idled)/(float)totald);
+    cpu = (((float)totald - (float)idled)/(float)totald);
 
     //Have to reset the values to the current values for the next calculation
     PIdle = Idle;
